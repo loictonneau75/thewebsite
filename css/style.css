@@ -1,0 +1,7 @@
+div {
+    border: 1px solid black; /* Bordure noire de 1 pixel */
+  }
+.close-btn {
+    margin-left: 5px;
+    cursor: pointer;
+}
