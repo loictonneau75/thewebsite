@@ -1,5 +1,4 @@
-import { create_form } from "./form.js";
-import { attachFormHandler } from "./form.js";
+import { create_form, attachFormHandler } from "./form/index.js";
 import { create_modal } from "./confirm_modal.js";
 
 function setup_doc(name) {
