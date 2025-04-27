@@ -98,7 +98,9 @@ function confirmDeletion(index, modal){
             localStorage.setItem("teas", JSON.stringify(teas));
             updateAvailableLists(teas, teaToRemove);
             document.body.removeChild(modal);
-            location.reload();
+            const viewContainer = document.getElementById("thé_view");
+            clear(viewContainer);
+            viewContainer.appendChild(displayTeas());
         }
 }
 
