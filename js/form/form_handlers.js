@@ -274,7 +274,7 @@ export function create_form() {
     form.appendChild(createInputWithOptions(LOCAL_STORAGE_KEYS.typesAvailable, "Type :", FIELD_IDS.types, "Entrez un type", one_choice, true));
     form.appendChild(createInputWithOptions(LOCAL_STORAGE_KEYS.brandsAvailable, "Marque :", FIELD_IDS.brands, "Entrez une marque", one_choice, false));
     form.appendChild(createInputWithOptions(LOCAL_STORAGE_KEYS.ingredientsAvailable, "Ingredient :", FIELD_IDS.ingredients, "Entrez un ingredient", multiplechoice, true))
-    form.appendChild(createInputField("textarea", FIELD_IDS.comments, "Ton commentaire :",2, true));
+    form.appendChild(createInputField("textarea", FIELD_IDS.comments, "Ton commentaire :",2, false));
     form.appendChild(createSubmitBtn());
     return form;
 }

@@ -1,5 +1,5 @@
 import { create_form, attachFormHandler } from "./form/index.js";
-import { create_modal } from "./confirm_modal.js";
+import { displayTeas } from "./visualisation.js";
 
 function setup_doc(name) {
     document.title = name;
@@ -8,12 +8,8 @@ function setup_doc(name) {
     document.body.appendChild(h1);
     document.body.appendChild(create_form())
     attachFormHandler()
-    
-    const h2 = document.createElement("h2")
-    h2.innerText = "Liste de mes thés"
-    const théView = document.createElement("div")
-    théView.id = "thé_view"
-    //document.body.appendChild(create_modal())
+    document.body.appendChild(displayTeas())
+
 };
 
 window.onload = () => {
