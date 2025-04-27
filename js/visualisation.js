@@ -68,6 +68,7 @@ function createTeaCard(tea, index) {
  */
 export function displayTeas() {
     const teaView = document.createElement("div");
+    teaView.classList.add("thé_view")
     const teas = JSON.parse(localStorage.getItem("teas")) || [];;
     clear(teaView);
     teaView.appendChild(createTeasHeader());
@@ -98,9 +99,7 @@ function confirmDeletion(index, modal){
             localStorage.setItem("teas", JSON.stringify(teas));
             updateAvailableLists(teas, teaToRemove);
             document.body.removeChild(modal);
-            const viewContainer = document.getElementById("thé_view");
-            clear(viewContainer);
-            viewContainer.appendChild(displayTeas());
+            location.reload()
         }
 }
 

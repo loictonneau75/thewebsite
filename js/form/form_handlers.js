@@ -202,9 +202,7 @@ function handleFormSubmission(e, form, ingredientsInput, pillsContainer) {
         updateAvailableChoices(tea);
         form.reset();
         document.getElementById("pills-container").innerHTML = "";
-        const formContainer = document.getElementById("formulaire-the");
-        clear(formContainer);
-        formContainer.appendChild(create_form());
+        location.reload()
     } else {
         form.reportValidity();
     }
