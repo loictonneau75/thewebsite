@@ -90,7 +90,9 @@ function createSelectWithOptions(options, placeholder) {
 
 function bindOtherToggle(select, otherInput) {
     select.addEventListener('change', () => {
-        otherInput.style.display = (select.value === 'autre') ? 'block' : 'none';
+        const isOtherSelected = select.value === 'autre';
+        otherInput.style.display = isOtherSelected ? 'block' : 'none';
+        otherInput.required = isOtherSelected;
     });
 }
 
