@@ -3,6 +3,10 @@ import { bindOtherToggle , setupInputHandlers, setupKeyboardNavigation, setupAdd
 import { clear, capitalize} from "./form_constants.js";
 
 
+// ---------------------------------------------
+// Fonctions de base (création d'éléments simples)
+// ---------------------------------------------
+
 /**
  * Crée un élément d'entrée de formulaire (`input` ou `textarea`) avec des propriétés personnalisées.
  *
@@ -19,7 +23,7 @@ import { clear, capitalize} from "./form_constants.js";
  * createInputElement("input", "tea-name", "Entrez le nom", "text", null, { marginBottom: "10px" });
  * createInputElement("textarea", "tea-comment", "Votre commentaire", "", 5, {});
  */
-function createInputElement(tag , id, placeholder, inputType, rows, style) {
+function createInputElement(tag , id, placeholder, inputType, rows) {
     const element = document.createElement(tag);
     element.id = id;
     if (tag === "textarea") {
@@ -28,7 +32,6 @@ function createInputElement(tag , id, placeholder, inputType, rows, style) {
         element.type = inputType;
         element.placeholder = placeholder;
     }
-    Object.assign(element.style, style);
     return element;
 }
 
@@ -48,32 +51,6 @@ function makeLabel(forId, text) {
     label.htmlFor = forId;
     label.innerText = text;
     return label;
-}
-
-/**
- * Crée un champ de formulaire complet avec un label et un input (ou textarea).
- *
- * @function createInputField
- * @exports
- * @param {string} fieldTag - Le type d'élément à créer ("input" ou "textarea").
- * @param {string} fieldId - L'ID à attribuer au champ.
- * @param {string} labelText - Le texte du label associé au champ.
- * @param {number|null} rows - Le nombre de lignes si c'est un `textarea` (null pour un `input`).
- * @param {boolean} required - Indique si le champ doit être obligatoire (`required`).
- * @returns {HTMLDivElement} Un élément `div` contenant le label et le champ de formulaire.
- *
- * @example
- * createInputField("input", "tea-name", "Nom du Thé :", null, true);
- * createInputField("textarea", "tea-comment", "Commentaire :", 4, false);
- */
-export function createInputField(fieldTag, fieldId, labelText, rows, required) {
-    const wrapper = document.createElement("div");
-    const label = makeLabel(fieldId, labelText);
-    const input = createInputElement(fieldTag, fieldId, "", "text", rows, {} );
-    input.required = required
-    wrapper.appendChild(label);
-    wrapper.appendChild(input);
-    return wrapper;
 }
 
 /**
@@ -118,27 +95,6 @@ function makeOption({value, text, disabled = false, selected = false}) {
 }
 
 /**
- * Crée un élément `<select>` rempli d'options, avec une option par défaut (placeholder).
- *
- * @function createSelectWithOptions
- * @param {Array<string>} options - La liste des valeurs pour créer les options du select.
- * @param {string} placeholder - Le texte à afficher comme première option (désactivée et sélectionnée).
- * @param {string} ID - L'ID à attribuer au select (avec "-select" ajouté automatiquement).
- * @returns {HTMLSelectElement} L'élément select HTML créé avec ses options.
- *
- * @example
- * const typesSelect = createSelectWithOptions(["Thé Vert", "Thé Noir"], "Sélectionnez un type", "types");
- * document.body.appendChild(typesSelect);
- */
-function createSelectWithOptions(options, placeholder, ID) {
-    const select = makeSelect(`${ID}-select`);
-    const defaultOpt = makeOption({value:'', text:placeholder, disabled: true, selected: true});
-    select.appendChild(defaultOpt);
-    options.forEach(value => {select.appendChild(makeOption({ value: value, text: value }))});
-    return select;
-}
-
-/**
  * Crée un conteneur `<div>` contenant un label associé à un champ de formulaire.
  *
  * @function makeLabeledWrapper
@@ -176,6 +132,62 @@ export function createSubmitBtn(){
     submitBtn.textContent = "Envoyer";
     return submitBtn
 }
+
+// ---------------------------------------------
+// Fonctions de création de champs plus complexes
+// ---------------------------------------------
+
+/**
+ * Crée un élément `<select>` rempli d'options, avec une option par défaut (placeholder).
+ *
+ * @function createSelectWithOptions
+ * @param {Array<string>} options - La liste des valeurs pour créer les options du select.
+ * @param {string} placeholder - Le texte à afficher comme première option (désactivée et sélectionnée).
+ * @param {string} ID - L'ID à attribuer au select (avec "-select" ajouté automatiquement).
+ * @returns {HTMLSelectElement} L'élément select HTML créé avec ses options.
+ *
+ * @example
+ * const typesSelect = createSelectWithOptions(["Thé Vert", "Thé Noir"], "Sélectionnez un type", "types");
+ * document.body.appendChild(typesSelect);
+ */
+function createSelectWithOptions(options, placeholder, ID) {
+    const select = makeSelect(`${ID}-select`);
+    const defaultOpt = makeOption({value:'', text:placeholder, disabled: true, selected: true});
+    select.appendChild(defaultOpt);
+    options.forEach(value => {select.appendChild(makeOption({ value: value, text: value }))});
+    return select;
+}
+
+/**
+ * Crée un champ de formulaire complet avec un label et un input (ou textarea).
+ *
+ * @function createInputField
+ * @exports
+ * @param {string} fieldTag - Le type d'élément à créer ("input" ou "textarea").
+ * @param {string} fieldId - L'ID à attribuer au champ.
+ * @param {string} labelText - Le texte du label associé au champ.
+ * @param {number|null} rows - Le nombre de lignes si c'est un `textarea` (null pour un `input`).
+ * @param {boolean} required - Indique si le champ doit être obligatoire (`required`).
+ * @returns {HTMLDivElement} Un élément `div` contenant le label et le champ de formulaire.
+ *
+ * @example
+ * createInputField("input", "tea-name", "Nom du Thé :", null, true);
+ * createInputField("textarea", "tea-comment", "Commentaire :", 4, false);
+ */
+export function createInputField(fieldTag, fieldId, labelText, rows, required) {
+    const wrapper = document.createElement("div");
+    const label = makeLabel(fieldId, labelText);
+    const input = createInputElement(fieldTag, fieldId, "", "text", rows);
+    input.required = required
+    wrapper.appendChild(label);
+    wrapper.appendChild(input);
+    return wrapper;
+}
+
+
+// ---------------------------------------------
+// Fonctions liées à la sélection multiple
+// ---------------------------------------------
 
 /**
  * Crée les conteneurs nécessaires pour une sélection multiple :
@@ -218,7 +230,7 @@ function makeMultiChoiceContainers() {
  * document.body.appendChild(button);
  */
 function makeMultiChoiceControls(inputId, placeholder) {
-    const input = createInputElement("input", inputId, placeholder, "text", null, {});
+    const input = createInputElement("input", inputId, placeholder, "text", null);
     const button = document.createElement("button");
     button.type = "button";
     button.textContent = "Ajouter";
@@ -315,6 +327,11 @@ export function addIngredient(selectedChoices, choiceContainer,input, suggestion
     clear(suggestionsContainer)
 }
 
+
+// ---------------------------------------------
+// Fonctions pour la gestion des suggestions
+// ---------------------------------------------
+
 /**
  * Crée un élément visuel représentant une suggestion d'ingrédient.
  * 
@@ -384,6 +401,11 @@ export function showSuggestions(allIngredients, input, selectedChoices, suggesti
     });
 }
 
+
+// ---------------------------------------------
+// Fonctions de création de choix unique ou multiple
+// ---------------------------------------------
+
 /**
  * Crée un champ de sélection unique (soit un input texte si aucune option disponible,
  * soit un select avec un champ "Autre" en option).
@@ -401,14 +423,15 @@ export function showSuggestions(allIngredients, input, selectedChoices, suggesti
  */
 export function one_choice(options, container, placeholder, inputId, required) {
     if (options.length === 0) {
-        const input = createInputElement("input", inputId, placeholder, "text", null, {});
+        const input = createInputElement("input", inputId, placeholder, "text", null);
         container.appendChild(input);
         input.required = required
     } else {
         const select = createSelectWithOptions([...options, 'autre'], placeholder, inputId);
         container.appendChild(select);
         select.required = required
-        const otherInput = createInputElement("input", inputId, placeholder, "text", null, { display: 'none' });        
+        const otherInput = createInputElement("input", inputId, placeholder, "text", null);
+        Object.assign(otherInput, {display: "none"})
         container.appendChild(otherInput);
         bindOtherToggle(select, otherInput);
     }
@@ -444,6 +467,11 @@ export function multiplechoice(options, container, inputPlaceholder, inputId, re
     container.appendChild(suggestionsContainer);
     container.appendChild(choiceContainer);
 }
+
+
+// ---------------------------------------------
+// Fonction finale pour créer un champ basé sur localStorage
+// ---------------------------------------------
 
 /**
  * Crée un champ de formulaire basé sur des options récupérées depuis le localStorage,
