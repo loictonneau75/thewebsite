@@ -431,7 +431,7 @@ export function one_choice(options, container, placeholder, inputId, required) {
         container.appendChild(select);
         select.required = required
         const otherInput = createInputElement("input", inputId, placeholder, "text", null);
-        Object.assign(otherInput, {display: "none"})
+        otherInput.style.display = "none";
         container.appendChild(otherInput);
         bindOtherToggle(select, otherInput);
     }
