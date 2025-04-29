@@ -17,7 +17,7 @@ function setup_doc(name) {
     h1.classList.add('text-center', 'mb-4');
 
     const mainWrapper = document.createElement('div');
-    mainWrapper.classList.add("bg-white", 'container-fluid', 'p-5');
+    mainWrapper.classList.add('container-fluid', 'p-5', "reserch-card");
 
     mainWrapper.appendChild(h1);
     mainWrapper.appendChild(create_form());
