@@ -67,3 +67,17 @@ export function capitalize(s){
 export function clear(container){
     container.innerHTML = ""
 }
+
+export function createrowwithcolumns(contents){
+    const row = document.createElement('div')
+    //todo
+    row.classList.add('row', "g-3")
+    const colSize = Math.floor(12 / contents.length)
+    contents.forEach(content => {
+        const col = document.createElement('div')
+        col.classList.add(`col-md-${colSize}`)
+        col.appendChild(content)
+        row.appendChild(col)
+    });
+    return row
+}
