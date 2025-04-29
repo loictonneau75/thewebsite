@@ -68,14 +68,30 @@ export function clear(container){
     container.innerHTML = ""
 }
 
+
+/**
+ * Crée une ligne Bootstrap contenant plusieurs colonnes équitablement réparties,
+ * chacune contenant un élément HTML donné.
+ *
+ * @param {HTMLElement[]} contents - Tableau d'éléments HTML à placer dans les colonnes.
+ *                                   Chaque élément sera inséré dans une colonne distincte.
+ *
+ * @returns {HTMLDivElement} - Un élément <div> avec la classe "row" contenant
+ *                             des colonnes "col-md-*" remplies avec les éléments fournis.
+ *
+ * @example
+ * const input = document.createElement('input');
+ * const button = document.createElement('button');
+ * button.textContent = 'Valider';
+ * const row = createrowwithcolumns([input, button]);
+ * document.body.appendChild(row);
+ */
 export function createrowwithcolumns(contents){
     const row = document.createElement('div')
-    //todo
     row.classList.add('row', "g-3")
-    const colSize = Math.floor(12 / contents.length)
     contents.forEach(content => {
         const col = document.createElement('div')
-        col.classList.add(`col-md-${colSize}`)
+        col.classList.add(`col-md-${ Math.floor(12 / contents.length)}`)
         col.appendChild(content)
         row.appendChild(col)
     });
