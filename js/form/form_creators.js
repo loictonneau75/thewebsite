@@ -233,16 +233,15 @@ function makeMultiChoiceControls(inputId, placeholder) {
  * document.getElementById("pills-container").appendChild(pill);
  */
 function createIngredientPill(ingredient, onRemove) {
-    const pill = document.createElement('div');
     const span = document.createElement('span');
-    span.classList.add("ingredient-pill")
     span.textContent = ingredient;
-    pill.appendChild(span);
+    span.classList.add("ingredient-pill", "badge", "bg-primary", "rounded-pill", "fs-8", "d-inline-flex", "align-items-center")
     const closeBtn = document.createElement('button');
     closeBtn.textContent = '×';
     closeBtn.addEventListener('click', onRemove);
-    pill.appendChild(closeBtn);
-    return pill;
+    closeBtn.classList.add("btn", "btn-outline-danger", "supr-ingr")
+    span.appendChild(closeBtn);
+    return span;
 }
 
 /**

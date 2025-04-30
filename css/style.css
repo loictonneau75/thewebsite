@@ -9,5 +9,12 @@ body {
 .list-group-item.suggestion-item:hover {
     background-color: var(--bs-primary);
     color: white;
-  }
+}
 
+/*passer ceci dans lme sass bootstrap*/
+.supr-ingr{
+    padding: 0rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    border: 0rem;
+}
