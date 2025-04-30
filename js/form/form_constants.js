@@ -16,8 +16,8 @@ export const FIELD_IDS = {
     name: "name",
     types: "types",
     brands: "brands",
-    ingredients: "ingredients_container",
-    comments: "comments_container"
+    ingredients: "ingredients",
+    comments: "comments"
 };
 
 /**
