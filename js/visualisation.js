@@ -100,9 +100,7 @@ function showInlineConfirmation(container, index) {
  * @returns {HTMLDivElement} Un div contenant toutes les informations du thé et un bouton de suppression.
  */
 function createTeaCard(tea, index) {
-    //todo verifier l'utilité des classe
     const card = document.createElement("div");
-    card.classList.add("tea-card");
     const name = document.createElement("h3");
     name.innerText = tea.name;
     const type = createTeaPropertyLine(FIELD_IDS.types, tea.type)
