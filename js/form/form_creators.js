@@ -77,7 +77,7 @@ function makeSelect(id) {
  * @param {Object} params - Les paramètres pour configurer l'option.
  * @param {string} params.value - La valeur de l'option.
  * @param {string} params.text - Le texte affiché pour l'option.
- * @param {boolean} [params.disabled=false] - Indique si l'option doit être désactivée.
+ * @param {boolean} [params.hidden=false] - Indique si l'option doit être désactivée.
  * @param {boolean} [params.selected=false] - Indique si l'option doit être sélectionnée par défaut.
  * @returns {HTMLOptionElement} L'élément option HTML créé.
  *
@@ -85,11 +85,11 @@ function makeSelect(id) {
  * const opt = makeOption({ value: "green-tea", text: "Thé Vert" });
  * document.querySelector("select").appendChild(opt);
  */
-function makeOption({value, text, disabled = false, selected = false}) {
+function makeOption({value, text, hidden = false, selected = false}) {
     const option = document.createElement('option');
     option.value = value;
     option.textContent = text;
-    if (disabled) option.disabled = true;
+    if (hidden) option.hidden = true;
     if (selected) option.selected = true;
     return option;
 }
@@ -131,7 +131,7 @@ export function createSubmitBtn(){
  */
 function createSelectWithOptions(options, placeholder, ID) {
     const select = makeSelect(`${ID}-select`);
-    const defaultOpt = makeOption({value:'', text:placeholder, disabled: true, selected: true});
+    const defaultOpt = makeOption({value:'', text:placeholder, hidden: true, selected: true});
     select.appendChild(defaultOpt);
     options.forEach(value => {select.appendChild(makeOption({ value: value, text: value }))});
     return select;
