@@ -146,11 +146,11 @@ function getSelectedOrInputValue(selector) {
  */
 function createTeaObject(form, ingredients) {
     return {
-        name: form.querySelector("#name").value.trim(),
+        name: form.querySelector(`#${FIELD_IDS.name}`).value.trim(),
         type: getSelectedOrInputValue(`#${FIELD_IDS.types}`),
-        brand: getSelectedOrInputValue("#brands"),
+        brand: getSelectedOrInputValue(`#${FIELD_IDS.brands}`),
         ingredients: ingredients,
-        comment: form.querySelector("#comments_container").value.trim()
+        comment: form.querySelector(`#${FIELD_IDS.comments}`).value.trim()
     };
 }
 
@@ -164,7 +164,7 @@ function createTeaObject(form, ingredients) {
  * @param {HTMLElement} ingredientsInput - Le champ ou conteneur d'ingrédients à valider.
  *
  * @example
- * validateIngredients(["Menthe", "Citron"], document.getElementById("ingredients_container"));
+ * validateIngredients(["Menthe", "Citron"], document.getElementById("ingredients"));
  */
 function validateIngredients(pills, ingredientsInput) {
     if (pills.length === 0) {
