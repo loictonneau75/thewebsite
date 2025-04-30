@@ -322,18 +322,19 @@ export function addIngredient(selectedChoices, choiceContainer,input, suggestion
  * @function createSuggestionItem
  * @param {string} ingredient - Le nom de l'ingrédient à afficher comme suggestion.
  * @param {Function} onSelect - La fonction à exécuter lorsque l'utilisateur clique sur la suggestion.
- * @returns {HTMLDivElement} L'élément div représentant la suggestion.
+ * @returns {HTMLDivElement} L'élément button représentant la suggestion.
  *
  * @example
  * const suggestion = createSuggestionItem("Menthe", (selected) => console.log(selected));
  * document.getElementById("suggestions-container").appendChild(suggestion);
  */
 function createSuggestionItem(ingredient, onSelect) {
-    const div = document.createElement("div");
-    div.textContent = ingredient;
-    div.classList.add("suggestion-item");
-    div.addEventListener("click", () => onSelect(ingredient));
-    return div;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = ingredient;
+    button.classList.add("list-group-item", "list-group-item-action", "suggestion-item");
+    button.addEventListener("click", () => onSelect(ingredient));
+    return button;
 }
 
 /**
@@ -443,6 +444,7 @@ export function one_choice(options, container, placeholder, inputId, required) {
 export function multiplechoice(options, container, inputPlaceholder, inputId, required) {
     const selectedChoices = [];
     const { suggestionsContainer, choiceContainer } = makeMultiChoiceContainers();
+    suggestionsContainer.classList.add("list-group", "position-absolute", "shadow");
     const { input, button } = makeMultiChoiceControls(inputId, inputPlaceholder);
     input.classList.add('form-control');
     //todo

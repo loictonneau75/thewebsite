@@ -6,5 +6,8 @@ body {
     height: 100vh;
     margin: 0;
 }
-
+.list-group-item.suggestion-item:hover {
+    background-color: var(--bs-primary);
+    color: white;
+  }
 
