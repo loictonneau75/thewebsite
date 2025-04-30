@@ -161,8 +161,7 @@ export function createInputField(fieldTag, fieldId, labelText, rows, required) {
     const input = createInputElement(fieldTag, fieldId, "", "text", rows);
     input.classList.add("form-control")
     input.required = required
-    wrapper.appendChild(label);
-    wrapper.appendChild(input);
+    wrapper.append(label, input);
     return wrapper;
 }
 
@@ -416,8 +415,7 @@ export function one_choice(options, container, placeholder, inputId, required) {
         const otherInput = createInputElement("input", inputId, placeholder, "text", null);
         otherInput.classList.add("form-control")
         otherInput.style.display = "none";
-        container.appendChild(select);
-        container.appendChild(otherInput);
+        container.append(select,otherInput);
         bindOtherToggle(select, otherInput);
     }
 }
@@ -451,11 +449,8 @@ export function multiplechoice(options, container, inputPlaceholder, inputId, re
     const inputRow = document.createElement('div');
     //todo
     inputRow.classList.add('d-flex','mb-2');
-    inputRow.appendChild(input);
-    inputRow.appendChild(button);
-    container.appendChild(inputRow);
-    container.appendChild(suggestionsContainer);
-    container.appendChild(choiceContainer);
+    inputRow.append(input, button);
+    container.append(inputRow, suggestionsContainer, choiceContainer);
     setupInputHandlers(options, input, selectedChoices, suggestionsContainer)
     setupKeyboardNavigation(input, suggestionsContainer);
     setupAddButton(button, selectedChoices, choiceContainer, input, suggestionsContainer)

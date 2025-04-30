@@ -270,16 +270,18 @@ export function create_form() {
     const form = document.createElement("form");
     form.id = "formulaire-the";
     form.autocomplete = "off";
-    form.appendChild(createrowwithcolumns([
-        createInputField("input", FIELD_IDS.name, "Nom du Thé :",null, true),
-        createInputWithOptions(LOCAL_STORAGE_KEYS.typesAvailable, "Type :", FIELD_IDS.types, "Entrez un type", one_choice, true)
-    ]))
-    form.appendChild(createrowwithcolumns([
-        createInputWithOptions(LOCAL_STORAGE_KEYS.brandsAvailable, "Marque :", FIELD_IDS.brands, "Entrez une marque", one_choice, false),
-        createInputWithOptions(LOCAL_STORAGE_KEYS.ingredientsAvailable, "Ingredient :", FIELD_IDS.ingredients, "Entrez un ingredient", multiplechoice, true)
-    ]))
-    form.appendChild(createrowwithcolumns([createInputField("textarea", FIELD_IDS.comments, "Ton commentaire :",2, false)]))
-    form.appendChild(createrowwithcolumns([createSubmitBtn()]))
+    form.append(
+        createrowwithcolumns([
+            createInputField("input", FIELD_IDS.name, "Nom du Thé :",null, true),
+            createInputWithOptions(LOCAL_STORAGE_KEYS.typesAvailable, "Type :", FIELD_IDS.types, "Entrez un type", one_choice, true)
+        ]),
+        createrowwithcolumns([
+            createInputWithOptions(LOCAL_STORAGE_KEYS.brandsAvailable, "Marque :", FIELD_IDS.brands, "Entrez une marque", one_choice, false),
+            createInputWithOptions(LOCAL_STORAGE_KEYS.ingredientsAvailable, "Ingredient :", FIELD_IDS.ingredients, "Entrez un ingredient", multiplechoice, true)
+        ]),
+        createrowwithcolumns([createInputField("textarea", FIELD_IDS.comments, "Ton commentaire :",2, false)]),
+        createrowwithcolumns([createSubmitBtn()])
+    )
     return form;
 }
 
