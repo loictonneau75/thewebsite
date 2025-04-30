@@ -32,5 +32,5 @@ function setup_doc(name) {
 };
 
 window.onload = () => {
-    setup_doc("thewebsite");
+    setup_doc("Tea Time");
 };
