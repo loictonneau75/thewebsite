@@ -155,8 +155,11 @@ function createSelectWithOptions(options, placeholder, ID) {
  */
 export function createInputField(fieldTag, fieldId, labelText, rows, required) {
     const wrapper = document.createElement("div");
+    wrapper.classList.add("form-group")
     const label = makeLabel(fieldId, labelText);
+    label.classList.add("form-label")
     const input = createInputElement(fieldTag, fieldId, "", "text", rows);
+    input.classList.add("form-control")
     input.required = required
     wrapper.appendChild(label);
     wrapper.appendChild(input);
@@ -403,14 +406,17 @@ export function showSuggestions(allIngredients, input, selectedChoices, suggesti
 export function one_choice(options, container, placeholder, inputId, required) {
     if (options.length === 0) {
         const input = createInputElement("input", inputId, placeholder, "text", null);
-        container.appendChild(input);
+        input.classList.add("form-control")
         input.required = required
+        container.appendChild(input);
     } else {
         const select = createSelectWithOptions([...options, 'autre'], placeholder, inputId);
-        container.appendChild(select);
+        select.classList.add("form-control")
         select.required = required
         const otherInput = createInputElement("input", inputId, placeholder, "text", null);
+        otherInput.classList.add("form-control")
         otherInput.style.display = "none";
+        container.appendChild(select);
         container.appendChild(otherInput);
         bindOtherToggle(select, otherInput);
     }
@@ -438,13 +444,20 @@ export function multiplechoice(options, container, inputPlaceholder, inputId, re
     const selectedChoices = [];
     const { suggestionsContainer, choiceContainer } = makeMultiChoiceContainers();
     const { input, button } = makeMultiChoiceControls(inputId, inputPlaceholder);
+    input.classList.add('form-control');
+    //todo
+    button.classList.add('btn', 'btn-primary');
+    const inputRow = document.createElement('div');
+    //todo
+    inputRow.classList.add('d-flex','mb-2');
+    inputRow.appendChild(input);
+    inputRow.appendChild(button);
+    container.appendChild(inputRow);
+    container.appendChild(suggestionsContainer);
+    container.appendChild(choiceContainer);
     setupInputHandlers(options, input, selectedChoices, suggestionsContainer)
     setupKeyboardNavigation(input, suggestionsContainer);
     setupAddButton(button, selectedChoices, choiceContainer, input, suggestionsContainer)
-    container.appendChild(input);
-    container.appendChild(button);
-    container.appendChild(suggestionsContainer);
-    container.appendChild(choiceContainer);
 }
 
 
@@ -471,9 +484,11 @@ export function multiplechoice(options, container, inputPlaceholder, inputId, re
  */
 export function createInputWithOptions(storageKey, labelText, inputId, inputPlaceholder, callback, required) {
     const wrapper = document.createElement("div")
+    wrapper.classList.add("form-group")
     const label = makeLabel(inputId, labelText)
-    wrapper.appendChild(label)
+    label.classList.add("form-label")
     const options = getDataFromLocalStorage(storageKey);
+    wrapper.appendChild(label)
     callback(options, wrapper, inputPlaceholder, inputId, required);
     return wrapper;
 }

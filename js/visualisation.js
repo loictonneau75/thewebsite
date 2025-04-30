@@ -118,6 +118,7 @@ function confirmDeletion(index, modal){
  * deleteTea(2); // Affiche un modal pour confirmer la suppression du 3ème thé
  */
 function deleteTea(index) {
+    console.log(index)
     const modal = create_modal();
     document.body.appendChild(modal);
     const confirmBtn = modal.querySelector("#confirm_suppression");

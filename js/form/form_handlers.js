@@ -47,12 +47,12 @@ export function setupKeyboardNavigation(input, suggestionsContainer){
         if (event.key === "ArrowDown") {
             event.preventDefault();
             currentIndex = (currentIndex + 1) % items.length;
-            items.forEach((it, i) => it.classList.toggle("highlight", i === currentIndex));
+            items.forEach((it, i) => it.classList.toggle("bg-primary", i === currentIndex));
         }
         else if (event.key === "ArrowUp") {
             event.preventDefault();
             currentIndex = (currentIndex - 1 + items.length) % items.length;
-            items.forEach((it, i) => it.classList.toggle("highlight", i === currentIndex));
+            items.forEach((it, i) => it.classList.toggle("bg-primary", i === currentIndex));
         }
         else if (event.key === "Enter") {
             event.preventDefault();
