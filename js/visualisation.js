@@ -1,5 +1,4 @@
 import {clear} from "./form/form_constants.js";
-import {create_modal} from "./confirm_modal.js";
 import { capitalize } from "./form/form_constants.js";
 import { FIELD_IDS } from "./form/form_constants.js";
 
@@ -50,6 +49,49 @@ function createTeaPropertyLine(label, value){
 }
 
 /**
+ * Remplace dynamiquement un bouton de suppression par une confirmation inline avec deux options :
+ * - "Oui" : supprime le thé correspondant via `confirmDeletion(index)`.
+ * - "Annuler" : restaure le bouton de suppression initial.
+ *
+ * Cette approche remplace l'utilisation d'un modal par une interaction fluide directement dans la carte.
+ *
+ * @function showInlineConfirmation
+ * @param {HTMLElement} container - Le conteneur HTML dans lequel afficher la confirmation inline.
+ * @param {number} index - L'index du thé à supprimer dans le tableau des thés.
+ *
+ * @example
+ * showInlineConfirmation(deleteContainerElement, 2);
+ */
+function showInlineConfirmation(container, index) {
+    container.innerHTML = ''; // vider l'ancien bouton
+
+    const text = document.createElement("span");
+    text.textContent = "Supprimer ce thé ? ";
+    container.appendChild(text);
+
+    const confirmBtn = document.createElement("button");
+    confirmBtn.textContent = "Oui";
+    confirmBtn.classList.add("btn", "btn-danger", "btn-sm", "me-2");
+    confirmBtn.addEventListener("click", () => {
+        confirmDeletion(index);
+    });
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.textContent = "Annuler";
+    cancelBtn.classList.add("btn", "btn-secondary", "btn-sm");
+    cancelBtn.addEventListener("click", () => {
+        container.innerHTML = '';
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Supprimer";
+        deleteBtn.classList.add("btn", "btn-outline-danger", "btn-sm");
+        deleteBtn.addEventListener("click", () => showInlineConfirmation(container, index));
+        container.appendChild(deleteBtn);
+    });
+
+    container.append(confirmBtn, cancelBtn);
+}
+
+/**
  * Crée une carte HTML pour afficher les informations d'un thé.
  *
  * @function createTeaCard
@@ -67,15 +109,14 @@ function createTeaCard(tea, index) {
     const brand = createTeaPropertyLine(FIELD_IDS.brands, tea.brand)
     const ingredients = createTeaPropertyLine(FIELD_IDS.ingredients, tea.ingredients.join(", "))
     const comment = createTeaPropertyLine(FIELD_IDS.comments, tea.comment)
+    const deleteContainer = document.createElement("div");
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Supprimer";
-    deleteBtn.addEventListener("click", () => deleteTea(index));
-    card.appendChild(name);
-    card.appendChild(type);
-    card.appendChild(brand);
-    card.appendChild(ingredients);
-    card.appendChild(comment);
-    card.appendChild(deleteBtn);
+    deleteBtn.classList.add("btn", "btn-outline-danger", "btn-sm");
+    deleteBtn.addEventListener("click", () => showInlineConfirmation(deleteContainer, index));
+
+    deleteContainer.appendChild(deleteBtn);
+    card.append(name, type, brand, ingredients, comment, deleteContainer);
     return card;
 }
 
@@ -112,40 +153,15 @@ export function displayTeas() {
  * @param {number} index - L'index du thé à supprimer.
  * @param {HTMLElement} modal - Le modal de confirmation à fermer après suppression.
  */
-function confirmDeletion(index, modal){
+function confirmDeletion(index){
     let teas = JSON.parse(localStorage.getItem("teas")) || [];
         if (index >= 0 && index < teas.length) {
             const teaToRemove = teas[index];
             teas.splice(index, 1);
             localStorage.setItem("teas", JSON.stringify(teas));
             updateAvailableLists(teas, teaToRemove);
-            document.body.removeChild(modal);
             location.reload()
         }
-}
-
-/**
- * Affiche un modal de confirmation pour supprimer un thé.
- * 
- * Lorsqu'un utilisateur clique sur le bouton "Supprimer" d'une carte :
- * - Un modal est affiché pour confirmer ou annuler la suppression.
- * - Si l'utilisateur confirme, la fonction `confirmDeletion` est appelée pour supprimer le thé.
- * - Si l'utilisateur annule, le modal est simplement fermé sans action supplémentaire.
- *
- * @function deleteTea
- * @param {number} index - L'index du thé à supprimer dans le tableau des thés.
- *
- * @example
- * deleteTea(2); // Affiche un modal pour confirmer la suppression du 3ème thé
- */
-function deleteTea(index) {
-    const modal = create_modal();
-    console.log(modal)
-    document.body.appendChild(modal);
-    const confirmBtn = modal.querySelector("#confirm_suppression");
-    confirmBtn.addEventListener("click", () => {confirmDeletion(index, modal)});
-    const cancelBtn = modal.querySelector("#undo_suppression");
-    cancelBtn.addEventListener("click", () => {document.body.removeChild(modal)});
 }
 
 /**
