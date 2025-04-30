@@ -1,5 +1,7 @@
 import {clear} from "./form/form_constants.js";
 import {create_modal} from "./confirm_modal.js";
+import { capitalize } from "./form/form_constants.js";
+import { FIELD_IDS } from "./form/form_constants.js";
 
 /**
  * Crée un élément de titre pour la section "Liste de mes thés".
@@ -26,6 +28,28 @@ function createNoTeasMessage() {
 }
 
 /**
+ * Crée un élément HTML de paragraphe contenant une propriété d'un thé,
+ * affichée sous la forme : <strong>Nom :</strong> valeur.
+ *
+ * La première lettre du label est automatiquement mise en majuscule,
+ * et un ":" est ajouté après, pour un affichage homogène.
+ *
+ * @function createTeaPropertyLine
+ * @param {string} label - Le nom du champ à afficher (ex : "type", "marque", "ingrédients").
+ * @param {string} value - La valeur associée à ce champ.
+ * @returns {HTMLParagraphElement} Un élément <p> contenant le texte mis en forme.
+ *
+ * @example
+ * const el = createTeaPropertyLine("marque", "Lipton");
+ * // <p><strong>Marque :</strong> Lipton</p>
+ */
+function createTeaPropertyLine(label, value){
+    const propertyLine = document.createElement("p")
+    propertyLine.innerHTML = `<strong>${capitalize(label.slice(0,-1))} :</strong> ${value}`
+    return propertyLine
+}
+
+/**
  * Crée une carte HTML pour afficher les informations d'un thé.
  *
  * @function createTeaCard
@@ -34,18 +58,15 @@ function createNoTeasMessage() {
  * @returns {HTMLDivElement} Un div contenant toutes les informations du thé et un bouton de suppression.
  */
 function createTeaCard(tea, index) {
+    //todo verifier l'utilité des classe
     const card = document.createElement("div");
     card.classList.add("tea-card");
     const name = document.createElement("h3");
     name.innerText = tea.name;
-    const type = document.createElement("p");
-    type.innerHTML = `<strong>Type :</strong> ${tea.type}`;
-    const brand = document.createElement("p");
-    brand.innerHTML = `<strong>Marque :</strong> ${tea.brand}`;
-    const ingredients = document.createElement("p");
-    ingredients.innerHTML = `<strong>Ingrédients :</strong> ${tea.ingredients.join(", ")}`;
-    const comment = document.createElement("p");
-    comment.innerHTML = `<strong>Commentaire :</strong> ${tea.comment}`;
+    const type = createTeaPropertyLine(FIELD_IDS.types, tea.type)
+    const brand = createTeaPropertyLine(FIELD_IDS.brands, tea.brand)
+    const ingredients = createTeaPropertyLine(FIELD_IDS.ingredients, tea.ingredients.join(", "))
+    const comment = createTeaPropertyLine(FIELD_IDS.comments, tea.comment)
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Supprimer";
     deleteBtn.addEventListener("click", () => deleteTea(index));
@@ -118,8 +139,8 @@ function confirmDeletion(index, modal){
  * deleteTea(2); // Affiche un modal pour confirmer la suppression du 3ème thé
  */
 function deleteTea(index) {
-    console.log(index)
     const modal = create_modal();
+    console.log(modal)
     document.body.appendChild(modal);
     const confirmBtn = modal.querySelector("#confirm_suppression");
     confirmBtn.addEventListener("click", () => {confirmDeletion(index, modal)});
