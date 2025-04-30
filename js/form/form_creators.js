@@ -95,27 +95,6 @@ function makeOption({value, text, disabled = false, selected = false}) {
 }
 
 /**
- * Crée un conteneur `<div>` contenant un label associé à un champ de formulaire.
- *
- * @function makeLabeledWrapper
- * @param {string} forId - L'ID de l'élément de formulaire auquel le label doit être associé.
- * @param {string} labelText - Le texte à afficher dans le label.
- * @returns {HTMLDivElement} Le conteneur div contenant le label.
- *
- * @example
- * const wrapper = makeLabeledWrapper("name", "Nom du thé :");
- * document.body.appendChild(wrapper);
- */
-function makeLabeledWrapper(forId, labelText) {
-    const wrapper = document.createElement("div");
-    const label = document.createElement("label");
-    label.htmlFor = forId;
-    label.innerText = labelText;
-    wrapper.appendChild(label);
-    return wrapper;
-}
-
-/**
  * Crée un bouton de soumission pour un formulaire.
  *
  * @function createSubmitBtn
@@ -491,7 +470,9 @@ export function multiplechoice(options, container, inputPlaceholder, inputId, re
  * createInputWithOptions("typesAvailable", "Type :", "types", "Entrez un type", one_choice, true);
  */
 export function createInputWithOptions(storageKey, labelText, inputId, inputPlaceholder, callback, required) {
-    const wrapper = makeLabeledWrapper(inputId, labelText);
+    const wrapper = document.createElement("div")
+    const label = makeLabel(inputId, labelText)
+    wrapper.appendChild(label)
     const options = getDataFromLocalStorage(storageKey);
     callback(options, wrapper, inputPlaceholder, inputId, required);
     return wrapper;
