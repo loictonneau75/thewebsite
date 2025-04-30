@@ -16,5 +16,7 @@ body {
     padding: 0rem;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
+}
+.no-border{
     border: 0rem;
 }

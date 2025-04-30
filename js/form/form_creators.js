@@ -238,7 +238,7 @@ function createIngredientPill(ingredient, onRemove) {
     const closeBtn = document.createElement('button');
     closeBtn.textContent = '×';
     closeBtn.addEventListener('click', onRemove);
-    closeBtn.classList.add("btn", "btn-outline-danger", "supr-ingr")
+    closeBtn.classList.add("btn", "btn-outline-danger", "supr-ingr", "no-border")
     span.appendChild(closeBtn);
     return span;
 }

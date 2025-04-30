@@ -112,7 +112,7 @@ function createTeaCard(tea, index) {
     const deleteContainer = document.createElement("div");
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Supprimer";
-    deleteBtn.classList.add("btn", "btn-outline-danger", "btn-sm");
+    deleteBtn.classList.add("btn", "btn-outline-danger", "btn-sm", "no-border");
     deleteBtn.addEventListener("click", () => showInlineConfirmation(deleteContainer, index));
 
     deleteContainer.appendChild(deleteBtn);
