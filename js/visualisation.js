@@ -3,18 +3,6 @@ import { capitalize } from "./form/form_constants.js";
 import { FIELD_IDS } from "./form/form_constants.js";
 
 /**
- * Crée un élément de titre pour la section "Liste de mes thés".
- *
- * @function createTeasHeader
- * @returns {HTMLHeadingElement} Un élément `<h2>` contenant le titre.
- */
-function createTeasHeader() {
-    const h2 = document.createElement("h2");
-    h2.innerText = "Liste de mes thés";
-    return h2;
-}
-
-/**
  * Crée un message indiquant qu'aucun thé n'est enregistré.
  *
  * @function createNoTeasMessage
@@ -128,7 +116,6 @@ function createTeaCard(tea, index) {
  */
 export function displayTeas() {
     const teaView = document.createElement("div");
-    teaView.classList.add("thé_view")
     const teas = JSON.parse(localStorage.getItem("teas")) || [];;
     clear(teaView);
     teaView.appendChild(createTeasHeader());
