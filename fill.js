@@ -1,0 +1,22 @@
+localStorage.setItem("teas", JSON.stringify([
+    {"name":"Earl Grey","type":"thé noir","brand":"Twinings","ingredients":["bergamote"],"comment":"Classique et parfumé"},
+    {"name":"Sencha","type":"thé vert","brand":"Ito En","ingredients":["feuilles de thé vert"],"comment":"Doux et végétal"},
+    {"name":"Chai Latte","type":"thé noir","brand":"Yogi Tea","ingredients":["cannelle","gingembre","clou de girofle"],"comment":"Épicé et réconfortant"},
+    {"name":"Jasmin","type":"thé vert","brand":"Palais des Thés","ingredients":["fleur de jasmin"],"comment":"Très floral"},
+    {"name":"Rooibos Vanille","type":"infusion","brand":"La Tisanière","ingredients":["rooibos","vanille"],"comment":"Sans théine et doux"},
+    {"name":"Menthe Poivrée","type":"infusion","brand":"Lipton","ingredients":["menthe poivrée"],"comment":"Très rafraîchissant"},
+    {"name":"Thé Matcha","type":"thé vert","brand":"Matcha Republic","ingredients":["poudre de matcha"],"comment":"Fort en goût et stimulant"},
+    {"name":"Camomille","type":"infusion","brand":"Pukka","ingredients":["fleurs de camomille"],"comment":"Apaisant le soir"},
+    {"name":"Thé Blanc Pêche","type":"thé blanc","brand":"Lov Organic","ingredients":["thé blanc","pêche"],"comment":"Subtil et fruité"},
+    {"name":"Genmaicha","type":"thé vert","brand":"Yamamotoyama","ingredients":["riz grillé","thé vert"],"comment":"Goût grillé original"},
+    {"name":"Thé Oolong Milky","type":"oolong","brand":"Tea & Cie","ingredients":["oolong","lait"],"comment":"Crémeux et doux"},
+    {"name":"Thé des Moines","type":"mélange","brand":"Damman Frères","ingredients":["thé vert","thé noir","arômes floraux"],"comment":"Harmonieux"},
+    {"name":"Thé Glacé Citron","type":"thé noir","brand":"Nestea","ingredients":["thé noir","citron"],"comment":"Idéal en été"},
+    {"name":"Verveine","type":"infusion","brand":"Elephant","ingredients":["feuilles de verveine"],"comment":"Digestive"},
+    {"name":"Tilleul Menthe","type":"infusion","brand":"Pagès","ingredients":["tilleul","menthe"],"comment":"Très relaxant"},
+    {"name":"Thé à la Rose","type":"thé noir","brand":"Mariage Frères","ingredients":["pétales de rose"],"comment":"Délicat et floral"},
+    {"name":"Lapsang Souchong","type":"thé noir fumé","brand":"Kusmi Tea","ingredients":["thé noir fumé"],"comment":"Puissant et boisé"},
+    {"name":"Infusion Hibiscus","type":"infusion","brand":"Clipper","ingredients":["hibiscus","baies rouges"],"comment":"Acidulé"},
+    {"name":"Thé Detox","type":"mélange","brand":"Kusmi Tea","ingredients":["maté","citronnelle","thé vert"],"comment":"Énergisant"},
+    {"name":"Maté Vert","type":"maté","brand":"Guayapi","ingredients":["feuilles de maté"],"comment":"Amer et tonique"}
+  ]));
