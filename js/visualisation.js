@@ -3,18 +3,6 @@ import { capitalize } from "./form/form_constants.js";
 import { FIELD_IDS } from "./form/form_constants.js";
 
 /**
- * Crée un élément de titre pour la section "Liste de mes thés".
- *
- * @function createTeasHeader
- * @returns {HTMLHeadingElement} Un élément `<h2>` contenant le titre.
- */
-function createTeasHeader() {
-    const h2 = document.createElement("h2");
-    h2.innerText = "Liste de mes thés";
-    return h2;
-}
-
-/**
  * Crée un message indiquant qu'aucun thé n'est enregistré.
  *
  * @function createNoTeasMessage
@@ -100,9 +88,7 @@ function showInlineConfirmation(container, index) {
  * @returns {HTMLDivElement} Un div contenant toutes les informations du thé et un bouton de suppression.
  */
 function createTeaCard(tea, index) {
-    //todo verifier l'utilité des classe
     const card = document.createElement("div");
-    card.classList.add("tea-card");
     const name = document.createElement("h3");
     name.innerText = tea.name;
     const type = createTeaPropertyLine(FIELD_IDS.types, tea.type)
@@ -130,10 +116,9 @@ function createTeaCard(tea, index) {
  */
 export function displayTeas() {
     const teaView = document.createElement("div");
-    teaView.classList.add("thé_view")
-    const teas = JSON.parse(localStorage.getItem("teas")) || [];;
+    teaView.classList.add("tea-carousel", "py-5");
+    const teas = JSON.parse(localStorage.getItem("teas")) || [];
     clear(teaView);
-    teaView.appendChild(createTeasHeader());
     if (teas.length === 0) {
         teaView.appendChild(createNoTeasMessage());
     } else {
@@ -141,9 +126,46 @@ export function displayTeas() {
             const teaCard = createTeaCard(tea, index);
             teaView.appendChild(teaCard);
         });
+        initializeSlick(teaView);
     }
+    
     return teaView;
 }
+
+/**
+ * Initialise le carrousel Slick sur un élément spécifié.
+ * Cette fonction applique Slick à l'élément passé en paramètre (teaView) et configure les paramètres de défilement,
+ * notamment le nombre d'éléments visibles et le comportement responsive en fonction de la taille de l'écran.
+ * 
+ * @param {HTMLElement} teaView - L'élément DOM sur lequel le carrousel Slick sera initialisé.
+ * L'élément doit contenir les éléments à faire défiler (par exemple, des cartes de thé).
+ * 
+ * @example
+ * // Initialiser le carrousel sur un élément teaView
+ * initializeSlick(document.getElementById('teaViewWrapper'));
+ * 
+ * @see {@link https://kenwheeler.github.io/slick/} pour plus d'informations sur la bibliothèque Slick.
+ */
+function initializeSlick(teaView) {
+    $(teaView).slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [{
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+            }
+        },{
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }]
+    });
+}
+
 
 /**
  * Confirme la suppression d'un thé et met à jour le localStorage, 
