@@ -89,20 +89,39 @@ function showInlineConfirmation(container, index) {
  */
 function createTeaCard(tea, index) {
     const card = document.createElement("div");
-    const name = document.createElement("h3");
+    card.classList.add("card")
+
+    const body = document.createElement("div");
+    body.classList.add("card-body")
+
+    const name = document.createElement("h5");
     name.innerText = tea.name;
-    const type = createTeaPropertyLine(FIELD_IDS.types, tea.type)
+    name.classList.add("card-title")
+    
+    const type = document.createElement("h6")
+    type.innerText = tea.type
+    type.classList.add("card-subtitle", "text-body-secondary")
+
     const brand = createTeaPropertyLine(FIELD_IDS.brands, tea.brand)
+    brand.classList.add("card-subtitle")
     const ingredients = createTeaPropertyLine(FIELD_IDS.ingredients, tea.ingredients.join(", "))
+    ingredients.classList.add("card-subtitle")
     const comment = createTeaPropertyLine(FIELD_IDS.comments, tea.comment)
+    comment.classList.add("card-subtitle")
+    
     const deleteContainer = document.createElement("div");
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Supprimer";
     deleteBtn.classList.add("btn", "btn-outline-danger", "btn-sm", "no-border");
     deleteBtn.addEventListener("click", () => showInlineConfirmation(deleteContainer, index));
+    deleteContainer.appendChild(deleteBtn)
 
-    deleteContainer.appendChild(deleteBtn);
-    card.append(name, type, brand, ingredients, comment, deleteContainer);
+    body.append(name, type, brand, ingredients,comment, deleteContainer)
+    
+    
+
+
+    card.appendChild(body)
     return card;
 }
 
