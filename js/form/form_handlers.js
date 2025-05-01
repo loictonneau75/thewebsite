@@ -282,6 +282,9 @@ export function create_form() {
         createrowwithcolumns([createInputField("textarea", FIELD_IDS.comments, "Ton commentaire :",2, false)]),
         createrowwithcolumns([createSubmitBtn()])
     )
+    requestAnimationFrame(() => {
+        attachFormHandler();
+    });
     return form;
 }
 

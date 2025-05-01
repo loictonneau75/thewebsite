@@ -20,8 +20,7 @@ function setup_doc(name) {
     teaViewWrapper.append(h2, displayTeas())
 
     document.body.append(formWrapper, teaViewWrapper);
-    //todo trouver comment la repasser dans create_form()
-    attachFormHandler()
+    
 };
 
 window.onload = () => {
