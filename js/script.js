@@ -16,6 +16,7 @@ function setup_doc(name) {
     h2.innerText = "Liste de mes thés";
 
     const teaViewWrapper = document.createElement('div');
+    teaViewWrapper.classList.add("container-fluid", "p-5")
     teaViewWrapper.append(h2, displayTeas())
 
     document.body.append(formWrapper, teaViewWrapper);
