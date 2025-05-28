@@ -23,10 +23,4 @@ export class backgroundManager{
         return this.wrapper
     }
 
-    updateOverlayOpacity(fadeEnd, color, baseOpacity) {
-        const maxOpacity = 1
-        const finalOpacity = baseOpacity + ((maxOpacity - baseOpacity) * utils.calculateFadeRatio(fadeEnd, ".ts-title"))
-        this.overlay.style.backgroundColor = `rgba(${color}, ${finalOpacity})`;
-    }
-
 }

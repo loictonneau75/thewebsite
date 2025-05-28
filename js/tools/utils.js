@@ -29,9 +29,14 @@ export function getColorAndOpacity(element, color){
         };
     }
 
-export function calculateFadeRatio(fadeEnd, classe) {
-    const titleViewportOffsetTop = document.querySelector(classe).getBoundingClientRect().top
-    if (titleViewportOffsetTop < 0) return 1
-    else if (titleViewportOffsetTop <= fadeEnd) return 1 - (titleViewportOffsetTop / fadeEnd)
+export function calculateFadeRatio(fadeEnd, selector) {
+    const ViewportOffsetTop = document.querySelector(selector).getBoundingClientRect().top
+    if (ViewportOffsetTop < 0) return 1
+    else if (ViewportOffsetTop <= fadeEnd) return 1 - (ViewportOffsetTop / fadeEnd)
+}
+
+export function updateElementOpacity(fadeEnd, color, baseOpacity, maxOpacity, selector, element, styletochange) {
+    const finalOpacity = baseOpacity + ((maxOpacity - baseOpacity) * calculateFadeRatio(fadeEnd, selector))
+    element.style[styletochange] = `rgba(${color}, ${finalOpacity})`;
 }
 

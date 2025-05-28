@@ -20,9 +20,4 @@ export class TopSection{
         return this.section
     }
 
-    updateWelcomOpacity(fadeEnd, color, baseOpacity){
-        const maxOpacity = 0
-        const finalOpacity = baseOpacity + ((maxOpacity - baseOpacity) * utils.calculateFadeRatio(fadeEnd, ".ts-text"))
-        this.welcome.style.color = `rgba(${color}, ${finalOpacity})`;
-    }
 }

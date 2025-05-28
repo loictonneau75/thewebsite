@@ -34,6 +34,6 @@ const {color: welcomeColor, opacity: welcomeOpacity} = utils.getColorAndOpacity(
 
 
 window.addEventListener("scroll", () => {
-    background.updateOverlayOpacity(bgFadeEnd, bgColor ,bgOpacity)
-    topSection.updateWelcomOpacity(welcomeFadeEnd, welcomeColor, welcomeOpacity)
+    utils.updateElementOpacity(bgFadeEnd, bgColor ,bgOpacity, 1, ".ts-title", overlay, "backgroundColor")
+    utils.updateElementOpacity(welcomeFadeEnd, welcomeColor, welcomeOpacity, 0,".ts-text", welcome, "color")
 })
