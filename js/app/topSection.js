@@ -1,4 +1,5 @@
 import * as DH from "../tools/domHelper.js"
+import * as utils from "../tools/utils.js"
 
 
 export class TopSection{
@@ -17,5 +18,11 @@ export class TopSection{
     }
     build(){
         return this.section
+    }
+
+    updateWelcomOpacity(fadeEnd, color, baseOpacity){
+        const maxOpacity = 0
+        const finalOpacity = baseOpacity + ((maxOpacity - baseOpacity) * utils.calculateFadeRatio(fadeEnd, ".ts-text"))
+        this.welcome.style.color = `rgba(${color}, ${finalOpacity})`;
     }
 }

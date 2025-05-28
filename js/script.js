@@ -23,10 +23,17 @@ document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", 
 document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "rouge"]}))
 
 
-const fadeStart = document.querySelector(".ts-title").getBoundingClientRect().top
 const overlay = document.querySelector(".bg-overlay")
-const {color, opacity} = background.getColorAndOpacity(overlay)
+const bgFadeEnd = document.querySelector(".ts-title").getBoundingClientRect().top
+const {color: bgColor, opacity: bgOpacity} = utils.getColorAndOpacity(overlay, "backgroundColor")
+
+const welcome = document.querySelector(".ts-text")
+const welcomeFadeEnd = welcome.getBoundingClientRect().top
+const {color: welcomeColor, opacity: welcomeOpacity} = utils.getColorAndOpacity(welcome, "color")
+
+
+
 window.addEventListener("scroll", () => {
-    background.updateOverlayOpacity(fadeStart, color ,opacity)
-    topSection
+    background.updateOverlayOpacity(bgFadeEnd, bgColor ,bgOpacity)
+    topSection.updateWelcomOpacity(welcomeFadeEnd, welcomeColor, welcomeOpacity)
 })
