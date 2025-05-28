@@ -19,21 +19,22 @@ document.body.appendChild(topSection.build())
 
 
 
-document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "bleu"]}))
-document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "rouge"]}))
+document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest"]}))
+document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest"]}))
 
 
 const overlay = document.querySelector(".bg-overlay")
-const bgFadeEnd = document.querySelector(".ts-title").getBoundingClientRect().top
-const {color: bgColor, opacity: bgOpacity} = utils.getColorAndOpacity(overlay, "backgroundColor")
+const title = document.querySelector(".ts-title")
+const bgFadeEnd = title.getBoundingClientRect().top
+const bgColorData = utils.getColorAndOpacity(overlay, "backgroundColor")
 
 const welcome = document.querySelector(".ts-text")
 const welcomeFadeEnd = welcome.getBoundingClientRect().top
-const {color: welcomeColor, opacity: welcomeOpacity} = utils.getColorAndOpacity(welcome, "color")
+const welcomeColorData = utils.getColorAndOpacity(welcome, "color")
 
 
 
 window.addEventListener("scroll", () => {
-    utils.updateElementOpacity(bgFadeEnd, bgColor ,bgOpacity, 1, ".ts-title", overlay, "backgroundColor")
-    utils.updateElementOpacity(welcomeFadeEnd, welcomeColor, welcomeOpacity, 0,".ts-text", welcome, "color")
+    utils.updateElementOpacity(overlay, bgFadeEnd, bgColorData, 0.8, title, "backgroundColor")
+    utils.updateElementOpacity(welcome, welcomeFadeEnd, welcomeColorData, 0,welcome, "color")
 })
