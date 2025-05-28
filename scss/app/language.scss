@@ -6,9 +6,7 @@
     display: flex;
     gap: 1vw;
     &-flag{
-        width: 4vw;
+        width:clamp(1.5em, 4vw, 3em);
         cursor: pointer;
-        background: #fff center center no-repeat;
-        border-radius: 10%;
     }
 }

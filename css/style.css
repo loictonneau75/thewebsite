@@ -51,7 +51,7 @@
   font-size: clamp(1.5rem, 3vw + 0.5rem, 3rem);
 }
 .ts-title {
-  font-size: clamp(4rem, 10vw + 0.5rem, 7rem);
+  font-size: clamp(3rem, 10vw + 0.5rem, 7rem);
   text-align: center;
 }
 
@@ -63,10 +63,8 @@
   gap: 1vw;
 }
 .language-flag {
-  width: 4vw;
+  width: clamp(1.5em, 4vw, 3em);
   cursor: pointer;
-  background: #fff center center no-repeat;
-  border-radius: 10%;
 }
 
 *, *::before, *::after {
