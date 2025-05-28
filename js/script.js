@@ -23,6 +23,10 @@ document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", 
 document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "rouge"]}))
 
 
-const fadeStart = document.querySelector(".css_ts-title").getBoundingClientRect().top
-const opacity = background.getOpacity()
-window.addEventListener("scroll", () => background.updateOverlayOpacity(fadeStart, opacity))
+const fadeStart = document.querySelector(".ts-title").getBoundingClientRect().top
+const overlay = document.querySelector(".bg-overlay")
+const {color, opacity} = background.getColorAndOpacity(overlay)
+window.addEventListener("scroll", () => {
+    background.updateOverlayOpacity(fadeStart, color ,opacity)
+    topSection
+})

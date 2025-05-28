@@ -4,10 +4,10 @@ import * as utils from "../tools/utils.js"
 export class backgroundManager{
     constructor(config){
         this.wrapper = DH.createCustomElement("div", {
-            classList: ["css_bg"]
+            classList: ["bg"]
         })
         this.video = DH.createCustomElement("video", {
-            classList: ["css_bg-video"], 
+            classList: ["bg-video"], 
             src: utils.getAbsoltutePath(config.bgVideo), 
             type: "video/mp4", 
             muted: true, 
@@ -15,7 +15,7 @@ export class backgroundManager{
             loop: true
         })
         this.overlay = DH.createCustomElement("div", {
-            classList: ["css_bg-overlay"]
+            classList: ["bg-overlay"]
         })
         this.wrapper.append(this.video, this.overlay)
     }
@@ -23,25 +23,31 @@ export class backgroundManager{
         return this.wrapper
     }
 
-    updateOverlayOpacity(fadeStart, baseOpacity) {
-        let ratio = this.calculateFadeRatio(fadeStart)
-        const maxOpacity = 0.8
-        const finalOpacity = baseOpacity + ((maxOpacity - baseOpacity) * ratio)
-        this.overlay.style.backgroundColor = `rgba(0, 0, 0, ${finalOpacity})`;
+    updateOverlayOpacity(fadeStart, color, baseOpacity) {
+        const maxOpacity = 1
+        const finalOpacity = baseOpacity + ((maxOpacity - baseOpacity) * this.calculateFadeRatioOverlay(fadeStart))
+        this.overlay.style.backgroundColor = `rgba(${color}, ${finalOpacity})`;
     }
 
-    calculateFadeRatio(fadeStart) {
-        let ratio = 0;
-        const titleHeight = document.querySelector(".css_ts-title").getBoundingClientRect().top
-        if (titleHeight < 0) ratio = 1
-        else if (titleHeight <= fadeStart) ratio = 1 - (titleHeight / fadeStart)
-        return ratio
+    calculateFadeRatioOverlay(fadeStart) {
+        const titleHeight = document.querySelector(".ts-title").getBoundingClientRect().top
+        if (titleHeight < 0) return 1
+        else if (titleHeight <= fadeStart) return 1 - (titleHeight / fadeStart)
     }
 
-    getOpacity(){
+    getColorAndOpacity(element){
         const rgbaRegex = /rgba?\(([^)]+)\)/
-        const backgroundColor = getComputedStyle(this.overlay).backgroundColor.match(rgbaRegex)[1]
-        return parseFloat(backgroundColor.split(',')[3] || 1);
+        const match = getComputedStyle(element).backgroundColor.match(rgbaRegex)
+        const parts = match[1].split(',').map(p => p.trim());
+        const r = parts[0];
+        const g = parts[1];
+        const b = parts[2];
+        const a = parts[3] !== undefined ? parseFloat(parts[3]) : 1;
+
+        return {
+            color: `${r}, ${g}, ${b}`,
+            opacity: a
+        };
     }
 
 }
