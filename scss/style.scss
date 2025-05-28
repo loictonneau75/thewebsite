@@ -1,0 +1,13 @@
+@use "./custom.scss" as custom;
+@use "./app/backgroungManager.scss";
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: custom.$body-font;
+}
+
+.divtest{
+    height: 100vh;
+    width: 100%;
+}

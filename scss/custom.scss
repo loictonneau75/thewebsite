@@ -1,0 +1,24 @@
+@font-face {
+    font-family: "Osake";
+    src: url("../fonts/Osake.otf") format("opentype");
+};
+
+@font-face{
+    font-family: "Genjiro";
+    src: url("../fonts/Genjiro.ttf") format("truetype")
+};
+
+@font-face{
+    font-family: "Lato";
+    src: url("../fonts/Lato-Regular.ttf") format("truetype")
+};
+
+$title-font: "Osake";
+$body-font: "Lato";
+
+$colors : (
+    "primary": #AEB89F,
+    "secondary": #4B6653,
+    "error": #e84141
+);
+
