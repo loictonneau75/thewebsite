@@ -18,7 +18,11 @@ const topSection = new TS.TopSection(config, label, lang)
 document.body.appendChild(topSection.build())
 
 
+
 document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "bleu"]}))
 document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "rouge"]}))
 
-window.addEventListener("scroll", () => background.updateOverlayOpacity())
+
+const fadeStart = document.querySelector(".css_ts-title").getBoundingClientRect().top
+const opacity = background.getOpacity()
+window.addEventListener("scroll", () => background.updateOverlayOpacity(fadeStart, opacity))

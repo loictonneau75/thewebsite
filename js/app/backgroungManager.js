@@ -23,25 +23,25 @@ export class backgroundManager{
         return this.wrapper
     }
 
-    updateOverlayOpacity() {
-        let ratio = this.calculateFadeRatio()
-        const rgbaRegex = /rgba?\(([^)]+)\)/
-        if (this.overlay) {
-            const backgroundColor = getComputedStyle(this.overlay).backgroundColor.match(/rgba?\(([^)]+)\)/)[1]
-            const baseOpacity = parseFloat(backgroundColor.split(',')[3] || 1);
-            console.log("----- base opacity -----")
-            console.log(baseOpacity)
-            const maxIncrease = 0.5;
-            const finalOpacity = baseOpacity + ratio * maxIncrease;
-            console.log("----- final opacity -----")
-            console.log(finalOpacity)
-            this.overlay.style.backgroundColor = `rgba(0, 0, 0, ${finalOpacity})`;
-        }
+    updateOverlayOpacity(fadeStart, baseOpacity) {
+        let ratio = this.calculateFadeRatio(fadeStart)
+        const maxOpacity = 0.8
+        const finalOpacity = baseOpacity + ((maxOpacity - baseOpacity) * ratio)
+        this.overlay.style.backgroundColor = `rgba(0, 0, 0, ${finalOpacity})`;
     }
-    calculateFadeRatio(){
-        console.log("----- scrollY -----")
-        console.log(window.scrollY)
-        return 0
+
+    calculateFadeRatio(fadeStart) {
+        let ratio = 0;
+        const titleHeight = document.querySelector(".css_ts-title").getBoundingClientRect().top
+        if (titleHeight < 0) ratio = 1
+        else if (titleHeight <= fadeStart) ratio = 1 - (titleHeight / fadeStart)
+        return ratio
+    }
+
+    getOpacity(){
+        const rgbaRegex = /rgba?\(([^)]+)\)/
+        const backgroundColor = getComputedStyle(this.overlay).backgroundColor.match(rgbaRegex)[1]
+        return parseFloat(backgroundColor.split(',')[3] || 1);
     }
 
 }
