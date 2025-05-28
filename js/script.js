@@ -12,4 +12,5 @@ document.head.appendChild(DH.createCustomElement("link", {rel: "icon", href: con
 const background = new BGM.backgroundManager(config)
 document.body.appendChild(background.build())
 
-document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest"]}))
+document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "bleu"]}))
+document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "rouge"]}))

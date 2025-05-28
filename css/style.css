@@ -10,21 +10,31 @@
   font-family: "Lato";
   src: url("../fonts/Lato-Regular.ttf") format("truetype");
 }
-.css_background {
-  display: flex;
-  height: 100vh;
-  width: 100%;
+.css_bg {
   position: fixed;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.7);
-  transition: background-color 0.4s ease;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
 }
-.css_background-video {
+.css_bg > * {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+}
+.css_bg-video {
   object-fit: cover;
-  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+.css_bg-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color 0.4s ease;
 }
 
 *, *::before, *::after {
@@ -36,6 +46,14 @@
 .divtest {
   height: 100vh;
   width: 100%;
+}
+
+.bleu {
+  background-color: rgba(0, 0, 255, 0.5);
+}
+
+.rouge {
+  background-color: rgba(255, 0, 0, 0.5);
 }
 
 /*# sourceMappingURL=style.css.map */
