@@ -30,16 +30,15 @@ document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest"]}
 
 const overlay = document.querySelector(".bg-overlay")
 const title = document.querySelector(".ts-title")
-const bgFadeEnd = title.getBoundingClientRect().top
+const bgDistanceFromTop = title.getBoundingClientRect().top + window.scrollY
 const bgColorData = utils.getColorAndOpacity(overlay, "backgroundColor")
 
 const welcome = document.querySelector(".ts-text")
-const welcomeFadeEnd = welcome.getBoundingClientRect().top
+const welcomeDistanceFromTop = welcome.getBoundingClientRect().top + window.scrollY
 const welcomeColorData = utils.getColorAndOpacity(welcome, "color")
 
 
-
 window.addEventListener("scroll", () => {
-    utils.updateElementOpacity(overlay, bgFadeEnd, bgColorData, 0.8, title, "backgroundColor")
-    utils.updateElementOpacity(welcome, welcomeFadeEnd, welcomeColorData, 0,welcome, "color")
+    utils.updateElementOpacity(overlay, title, bgDistanceFromTop, bgColorData, 0.8, "backgroundColor")
+    utils.updateElementOpacity(welcome, welcome, welcomeDistanceFromTop, welcomeColorData, 0, "color")
 })

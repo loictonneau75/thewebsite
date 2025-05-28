@@ -29,14 +29,14 @@ export function getColorAndOpacity(element, color){
         };
     }
 
-export function calculateFadeRatio(fadeEnd, offsetElement) {
-    const ViewportOffsetTop = offsetElement.getBoundingClientRect().top
-    if (ViewportOffsetTop < 0) return 1
-    else if (ViewportOffsetTop <= fadeEnd) return 1 - (ViewportOffsetTop / fadeEnd)
+export function calculateFadeRatio(fadeDistance, referenceElement) {
+    const distanceFromViewportTop = referenceElement.getBoundingClientRect().top
+    if (distanceFromViewportTop < 0) return 1
+    else if (distanceFromViewportTop <= fadeDistance) return 1 - (distanceFromViewportTop / fadeDistance)
 }
 
-export function updateElementOpacity(element, fadeEnd, colorData, maxOpacity, offsetElement, styletochange) {
-    const finalOpacity = colorData.opacity + ((maxOpacity - colorData.opacity) * calculateFadeRatio(fadeEnd, offsetElement))
-    element.style[styletochange] = `rgba(${colorData.color}, ${finalOpacity})`;
+export function updateElementOpacity(targetElement, referenceElement, fadeDistance, baseColorData, maxOpacity, cssProperty) {
+    const finalOpacity = baseColorData.opacity + ((maxOpacity - baseColorData.opacity) * calculateFadeRatio(fadeDistance, referenceElement))
+    targetElement.style[cssProperty] = `rgba(${baseColorData.color}, ${finalOpacity})`;
 }
 
