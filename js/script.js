@@ -1,6 +1,7 @@
 import * as utils from "./tools/utils.js"
-import * as DH from "./tools/domHelper.js";
+import * as DH from "./tools/domHelper.js"
 import * as BGM from "./app/backgroungManager.js"
+import * as TS from "./app/topSection.js"
 
 
 const label = await utils.getConfigValue("json/label.json")
@@ -12,5 +13,12 @@ document.head.appendChild(DH.createCustomElement("link", {rel: "icon", href: con
 const background = new BGM.backgroundManager(config)
 document.body.appendChild(background.build())
 
+let lang = "fr"
+const topSection = new TS.TopSection(config, label, lang)
+document.body.appendChild(topSection.build())
+
+
 document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "bleu"]}))
 document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "rouge"]}))
+
+window.addEventListener("scroll", () => background.updateOverlayOpacity())

@@ -37,6 +37,25 @@
   transition: background-color 0.4s ease;
 }
 
+.css_ts {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.css_ts > * {
+  color: #AEB89F;
+  font-family: "Osake";
+}
+.css_ts-text {
+  font-size: clamp(1.5rem, 3vw + 0.5rem, 3rem);
+}
+.css_ts-title {
+  font-size: clamp(4rem, 10vw + 0.5rem, 7rem);
+  text-align: center;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

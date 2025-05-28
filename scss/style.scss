@@ -1,5 +1,6 @@
 @use "./custom.scss" as custom;
 @use "./app/backgroungManager.scss";
+@use "./app/topSection.scss";
 
 *, *::before, *::after {
     box-sizing: border-box;
