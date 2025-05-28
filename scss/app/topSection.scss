@@ -1,4 +1,5 @@
 @use "../custom.scss" as custom;
+@use "sass:map";
 
 
 .ts{
@@ -8,7 +9,7 @@
         justify-content: center;
         flex-direction: column;
         & > *{
-            color: map-get(custom.$colors, "primary");
+            color: map.get(custom.$colors, "primary");
             font-family: custom.$title-font;
         }
         &-text{

@@ -55,6 +55,20 @@
   text-align: center;
 }
 
+.language {
+  position: absolute;
+  top: 1.5vh;
+  right: 1.5vw;
+  display: flex;
+  gap: 1vw;
+}
+.language-flag {
+  width: 4vw;
+  cursor: pointer;
+  background: #fff center center no-repeat;
+  border-radius: 10%;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

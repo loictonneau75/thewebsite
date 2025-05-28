@@ -1,5 +1,7 @@
 import * as utils from "./tools/utils.js"
 import * as DH from "./tools/domHelper.js"
+
+import * as Language from "./app/language.js"
 import * as BGM from "./app/backgroungManager.js"
 import * as TS from "./app/topSection.js"
 
@@ -13,7 +15,10 @@ document.head.appendChild(DH.createCustomElement("link", {rel: "icon", href: con
 const background = new BGM.backgroundManager(config)
 document.body.appendChild(background.build())
 
-let lang = "fr"
+const language = new Language.Language(label)
+document.body.appendChild(language.build())
+let lang = utils.getlang()
+
 const topSection = new TS.TopSection(config, label, lang)
 document.body.appendChild(topSection.build())
 

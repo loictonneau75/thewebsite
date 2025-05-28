@@ -36,7 +36,7 @@ export function calculateFadeRatio(fadeEnd, offsetElement) {
 }
 
 export function updateElementOpacity(element, fadeEnd, colorData, maxOpacity, offsetElement, styletochange) {
-    const finalOpacity = baseOpacity + ((maxOpacity - colorData.opacity) * calculateFadeRatio(fadeEnd, offsetElement))
+    const finalOpacity = colorData.opacity + ((maxOpacity - colorData.opacity) * calculateFadeRatio(fadeEnd, offsetElement))
     element.style[styletochange] = `rgba(${colorData.color}, ${finalOpacity})`;
 }
 
