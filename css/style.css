@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "Osake";
+  src: url("../fonts/Osake.otf") format("opentype");
+}
+@font-face {
+  font-family: "Genjiro";
+  src: url("../fonts/Genjiro.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Lato";
+  src: url("../fonts/Lato-Regular.ttf") format("truetype");
+}
+.css_background {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: background-color 0.4s ease;
+}
+.css_background-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Lato";
+}
+
+.divtest {
+  height: 100vh;
+  width: 100%;
+}
+
+/*# sourceMappingURL=style.css.map */

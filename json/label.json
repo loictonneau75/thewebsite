@@ -1,0 +1,12 @@
+{
+    "fr":{
+        "welcome": "bienvenue dans le",
+        "flag": "img/flag/fr.svg",
+        "save": "Enregistrer"
+    },
+    "en":{
+        "welcome": "Welcome in",
+        "flag": "img/flag/eng.svg",
+        "save": "Save"
+    }
+}

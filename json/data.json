@@ -1,0 +1,91 @@
+{
+    "siteName": "tea loundge",
+    "version": "1.1.0",
+    "bgVideo": "video/thé_background.mp4",
+    "favicon": "img/favicon.ico",
+    "collectables": {
+        "en": "tea",
+        "fr": "thé"
+    },
+    "fields":[
+        {
+            "name": {
+                "id": "nameId",
+                "required": true,
+                "cardPosition": "header",
+                "cardRole": "title",
+                "label": {
+                    "fr": "Nom",
+                    "en": "Name"
+                }
+            },
+            "type":{
+                "id": "typeId",
+                "otherId": "otherTypeId",
+                "storageKey": "typesAvailable",
+                "required": true,
+                "cardPosition": "body",
+                "label": {
+                    "fr": "Type",
+                    "en": "Type"
+                }
+            }
+        },
+        {
+            "brand":{
+                "id": "brandId",
+                "otherId": "otherBrandId",
+                "storageKey": "brandsAvailable",
+                "required": false,
+                "cardPosition": "header",
+                "cardRole": "subtitle",
+                "label": {
+                    "fr": "Marque",
+                    "en": "Brand"
+                }
+            },
+            "ingredient":{
+                "id": "ingredientId",
+                "choiceId": "chosenIngredientId",
+                "storageKey": "ingredientsAvailable",
+                "required": true,
+                "cardPosition": "body",
+                "label": {
+                    "fr": "Ingrédient",
+                    "en": "Ingredient"
+                }
+            }
+        },{
+            "adjective":{
+                "id": "adjectiveId",
+                "choiceId": "chosenAdjectiveId",
+                "storageKey": "adjectivesAvailable",
+                "nbColumn": 2,
+                "required": false,
+                "cardPosition": "footer",
+                "label": {
+                    "fr": "Adjectif",
+                    "en": "Adjective"
+                }
+            }
+        },{
+            "comment": {
+                "id": "commentId",
+                "textarea": 4,
+                "required": false,
+                "cardPosition": "body",
+                "label": {
+                    "fr": "Commentaire",
+                    "en": "Comment"
+                }
+            }
+        }
+    ],
+    "carousel":{
+        "slidesToScroll": 1,
+        "slidesVisible": 3,
+        "loop": false,
+        "infinite": true,
+        "slideIndicator": true
+    }
+}
