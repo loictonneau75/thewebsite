@@ -12,7 +12,7 @@ export function setupscroll(){
     window.addEventListener("scroll", () => {
         utils.updateElementOpacity(overlay, title, bgColorData, 0.8, "backgroundColor")
         utils.updateElementOpacity(welcome, welcome, welcomeColorData, 0, "color")
-        utils.stickyWithTransform(title, welcome, form, 10,10)
+        utils.stickyWithTransform(title, welcome, form, window.innerHeight * 0.1, 10)
     })
 }
 
