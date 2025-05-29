@@ -6,7 +6,13 @@
     display: flex;
     gap: 1vw;
     &-flag{
-        width:clamp(1.5em, 4vw, 3em);
+        width: 1em;
         cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .language-flag {
+        width: 1.5em;
     }
 }
