@@ -2,7 +2,7 @@
 @use "sass:map";
 
 .form{
-    background-color: rgba(map.get(custom.$colors, "secondary"), 0.5);
+    border: 0.05rem solid rgba(map.get(custom.$colors , "primary"), 0.3);
     padding: 1.5em;
     border-radius: 0.5em;
     backdrop-filter: blur(5px);
@@ -11,5 +11,62 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    &-row{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 10px; 
+        flex: 1;
+    }
+    &-input{
+        width: 100%;
+        border-radius: 0.6rem;
+        outline: none;
+        background-color: rgba(map.get(custom.$colors , "secondary"), 0.3);
+        border: 0.1rem solid rgba(map.get(custom.$colors , "primary"), 0.5);
+        color: map.get(custom.$colors , "primary");
+        padding: 0.2em 0.5em;
+        &::placeholder{
+            color: map.get(custom.$colors , "primary")
+        }
+        &:focus{
+            background-color: rgba(map.get(custom.$colors , "secondary"), 0.45);
+            border: 0.1rem solid rgba(map.get(custom.$colors , "primary"), 0.65);
+        }
+        &-wrapper{
+            width: 100%;
+        }
+    }
+    &-button{
+        border: 0.07rem solid rgba(map.get(custom.$colors , "secondary"), 0.5);
+        width: 100%;
+        border-radius: 1rem;
+        background-color: rgba(map.get(custom.$colors , "primary"), 0.4);
+        color: map.get(custom.$colors , "primary");
+        &:hover{
+            border: 0.07rem solid rgba(map.get(custom.$colors , "secondary"), 0.65);
+            background-color: rgba(map.get(custom.$colors , "primary"), 0.55)
+        }
+        &:active{
+            border: 0.07rem solid rgba(map.get(custom.$colors , "secondary"), 0.55);
+            background-color: rgba(map.get(custom.$colors , "primary"), 0.45)
+        }
+    }
+    &-note{
+        font-size: 0.6em;
+        color: rgba(map.get(custom.$colors , "primary"), 0.45);
+        font-style: italic;
+        margin-bottom: 1em;
+    }
+    &-asterisk {
+        color: map.get(custom.$colors , "warning");
+
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .form-row {
+        flex-direction: column;
     }
 }

@@ -1,12 +1,22 @@
 {
     "fr":{
-        "welcome": "bienvenue dans le",
+        "welcome": "Bienvenue dans le",
         "flag": "img/flag/fr.svg",
-        "save": "Enregistrer"
+        "save": "Enregistrer",
+        "required": [
+            "Les champs marqués d'un",
+            "*",
+            "sont obligatoires"
+        ]
     },
     "en":{
         "welcome": "Welcome in",
         "flag": "img/flag/eng.svg",
-        "save": "Save"
+        "save": "Save",
+        "required": [
+            "Fields marked with",
+            "*",
+            "are required"
+        ]
     }
 }
