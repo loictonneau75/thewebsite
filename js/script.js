@@ -38,7 +38,8 @@ document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", 
 
 event.setupscroll()
 event.flagclick(language, [
-    [TS.TopSection, [config, label]]
+    [TS.TopSection, [config, label]],
+    [F.Form,[config, label]]
 ])
 
 
