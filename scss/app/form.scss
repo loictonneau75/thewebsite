@@ -2,6 +2,7 @@
 @use "sass:map";
 
 .form{
+    width: 60%;
     border: 0.05rem solid rgba(map.get(custom.$colors , "primary"), 0.3);
     padding: 1.5em;
     border-radius: 0.5em;
