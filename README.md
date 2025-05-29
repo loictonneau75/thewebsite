@@ -435,6 +435,8 @@ $colors : (
 
 ```
 
+>  I recommend using the complementary color as your secondary color. To calculate a complementary color in RGB, subtract each component from 255 or go to [canva color-wheel](https://www.canva.com/colors/color-wheel/)
+
 ### Change a Color
 
 To change the site’s color theme, simply **edit one or more values** in this map.
