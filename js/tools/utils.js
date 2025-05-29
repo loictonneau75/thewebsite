@@ -10,7 +10,7 @@ export async function getConfigValue(path) {
 }
 
 export function getlang(){
-    return localStorage.getItem("lang")
+    return localStorage.getItem("lang") || "en"
 }
 
 export function getColorAndOpacity(element, color){

@@ -4,6 +4,7 @@ import * as DH from "./tools/domHelper.js"
 import * as Language from "./app/language.js"
 import * as BGM from "./app/backgroungManager.js"
 import * as TS from "./app/topSection.js"
+import * as F from "./app/form.js"
 
 
 const label = await utils.getConfigValue("json/label.json")
@@ -13,19 +14,25 @@ document.title = config.siteName
 document.head.appendChild(DH.createCustomElement("link", {rel: "icon", href: config.favicon, type: "image/x-icon"}))
 
 const background = new BGM.backgroundManager(config)
-document.body.appendChild(background.build())
-
 const language = new Language.Language(label)
-document.body.appendChild(language.build())
-let lang = utils.getlang()
+const topSection = new TS.TopSection(config, label)
+const form = new F.Form()
 
-const topSection = new TS.TopSection(config, label, lang)
-document.body.appendChild(topSection.build())
+document.body.append(
+    background.build(), 
+    language.build(), 
+    topSection.build(), 
+    form.build())
 
 
 
-document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest"]}))
-document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest"]}))
+
+
+document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "bleu"]}))
+document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "rouge"]}))
+
+
+
 
 
 const overlay = document.querySelector(".bg-overlay")

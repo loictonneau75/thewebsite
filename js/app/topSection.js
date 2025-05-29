@@ -3,12 +3,12 @@ import * as utils from "../tools/utils.js"
 
 
 export class TopSection{
-    constructor(config, label, lang){
+    constructor(config, label){
         this.section = DH.createCustomElement("section", {
             classList:["ts"]
         })
         this.welcome = DH.createCustomElement("p", {
-            innerText: label[lang].welcome ,
+            innerText: label[utils.getlang()].welcome ,
             classList: ["ts-text"]
         })
         this.title = DH.createCustomElement("p", {

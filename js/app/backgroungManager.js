@@ -3,7 +3,7 @@ import * as utils from "../tools/utils.js"
 
 export class backgroundManager{
     constructor(config){
-        this.wrapper = DH.createCustomElement("div", {
+        this.section = DH.createCustomElement("section", {
             classList: ["bg"]
         })
         this.video = DH.createCustomElement("video", {
@@ -17,10 +17,10 @@ export class backgroundManager{
         this.overlay = DH.createCustomElement("div", {
             classList: ["bg-overlay"]
         })
-        this.wrapper.append(this.video, this.overlay)
+        this.section.append(this.video, this.overlay)
     }
     build(){
-        return this.wrapper
+        return this.section
     }
 
 }

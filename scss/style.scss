@@ -2,12 +2,14 @@
 @use "./app/backgroungManager.scss";
 @use "./app/topSection.scss";
 @use "./app/language.scss";
+@use "./app/form.scss";
 
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     font-family: custom.$body-font;
 }
+
 
 .divtest{
     height: 100vh;
