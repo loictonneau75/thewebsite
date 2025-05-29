@@ -1,0 +1,15 @@
+@use "../custom.scss" as custom;
+@use "sass:map";
+
+.form{
+    background-color: rgba(map.get(custom.$colors, "secondary"), 0.5);
+    padding: 1.5em;
+    border-radius: 0.5em;
+    backdrop-filter: blur(5px);
+    &-section{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
