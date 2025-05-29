@@ -17,7 +17,7 @@ document.head.appendChild(DH.createCustomElement("link", {rel: "icon", href: con
 const background = new BGM.backgroundManager(config)
 const language = new Language.Language(label)
 const topSection = new TS.TopSection(config, label)
-const form = new F.Form()
+const form = new F.Form(config)
 
 document.body.append(
     background.build(), 
