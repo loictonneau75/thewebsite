@@ -3,10 +3,6 @@
   src: url("../fonts/Osake.otf") format("opentype");
 }
 @font-face {
-  font-family: "Genjiro";
-  src: url("../fonts/Genjiro.ttf") format("truetype");
-}
-@font-face {
   font-family: "Lato";
   src: url("../fonts/Lato-Regular.ttf") format("truetype");
 }
