@@ -91,6 +91,10 @@
   width: 100%;
 }
 
+.border {
+  border: 2px solid red; /* bordure de 2px, couleur rouge */
+}
+
 .bleu {
   background-color: rgba(0, 0, 255, 0.5);
 }

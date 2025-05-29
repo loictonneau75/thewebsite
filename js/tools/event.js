@@ -3,15 +3,16 @@ import * as utils from "./utils.js"
 export function setupscroll(){
     const overlay = document.querySelector(".bg-overlay")
     const title = document.querySelector(".ts-title")
-    const bgColorData = utils.getColorAndOpacity(overlay, "backgroundColor")
-
     const welcome = document.querySelector(".ts-text")
+    const form = document.querySelector(".form")
+    const bgColorData = utils.getColorAndOpacity(overlay, "backgroundColor")
     const welcomeColorData = utils.getColorAndOpacity(welcome, "color")
 
 
     window.addEventListener("scroll", () => {
         utils.updateElementOpacity(overlay, title, bgColorData, 0.8, "backgroundColor")
         utils.updateElementOpacity(welcome, welcome, welcomeColorData, 0, "color")
+        utils.stickyWithTransform(title, welcome, form, 10,10)
     })
 }
 

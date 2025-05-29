@@ -41,3 +41,18 @@ export function updateElementOpacity(targetElement, referenceElement, baseColorD
     targetElement.style[cssProperty] = `rgba(${baseColorData.color}, ${finalOpacity})`;
 }
 
+let scrollStart = null;
+export function stickyWithTransform(targetElement, elementTriggerStart, elementTriggerStop, offsetTop, offsetBottom) {
+    const hasEnteredSticky = elementTriggerStart.getBoundingClientRect().bottom <= offsetTop;
+    const hasReachedStop = elementTriggerStop.getBoundingClientRect().top - offsetBottom <= targetElement.offsetHeight + offsetTop;
+    if (hasEnteredSticky && !hasReachedStop) {
+        if (scrollStart === null) scrollStart = window.scrollY;
+        const deltaScroll = window.scrollY - scrollStart;
+        targetElement.style.transform = `translateY(${deltaScroll}px)`;
+    }
+}
+
+
+
+
+
