@@ -30,7 +30,9 @@ export class Form{
         const row = DH.createCustomElement("div", {
             classList: ["form-row"]
         })
-        Object.values(rowData).forEach(inputData => this.buildInput(inputData, row))
+        Object.values(rowData).forEach(inputData => {
+            this.buildInput(inputData, row)
+        })
         this.form.appendChild(row)
     }
 
@@ -40,6 +42,15 @@ export class Form{
         })
         inputWrapper.appendChild(this.createSimpleInput(data))
         parent.appendChild(inputWrapper)
+        if(data.nbColumn && data.nbColumn > 0){
+            const nbEmpty = data.nbColumn - 1
+            for (let i = 0; i < nbEmpty; i++){
+                const emptyWrapper = DH.createCustomElement("div", {
+                    classList: ["form-input-wrapper", "empty"]
+                })
+                parent.appendChild(emptyWrapper)
+            }
+        }
     }
 
     createSimpleInput(data){
@@ -49,7 +60,6 @@ export class Form{
             placeholder: this.required(data),
             classList: ["form-input"]
         })
-        console.log(data.required)
         return input
     }
 
