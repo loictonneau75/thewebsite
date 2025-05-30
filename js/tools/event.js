@@ -16,13 +16,13 @@ export function setupscroll(){
     })
 }
 
-export function flagclick(language, components = []) {
+export function flagclick(components = []) {
     const flags = document.querySelectorAll(".language-flag")
     flags.forEach(flag => {
         flag.addEventListener("click", () => {
             localStorage.setItem("lang", flag.title)
             components.forEach(([Classe, args]) => {
-                language.changeLang(new Classe(...args))
+                utils.reloadComponent(new Classe(...args))
             })
             setupscroll()
         })

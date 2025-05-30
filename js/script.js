@@ -26,18 +26,8 @@ document.body.append(
     form.build())
 
 
-
-
-
-document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "bleu"]}))
-document.body.appendChild(DH.createCustomElement("div", {classList: ["divtest", "rouge"]}))
-
-
-
-
-
 event.setupscroll()
-event.flagclick(language, [
+event.flagclick([
     [TS.TopSection, [config, label]],
     [F.Form,[config, label]]
 ])

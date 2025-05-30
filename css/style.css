@@ -1,3 +1,20 @@
+.divtest {
+  height: 100vh;
+  width: 100%;
+}
+
+.border {
+  border: 2px solid red; /* bordure de 2px, couleur rouge */
+}
+
+.bleu {
+  background-color: rgba(0, 0, 255, 0.5);
+}
+
+.rouge {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
 @font-face {
   font-family: "Osake";
   src: url("../fonts/Osake.otf") format("opentype");
@@ -145,23 +162,6 @@
   margin: 0;
   font-family: "Lato";
   font-size: clamp(1em, 0.5em + 2.6vw, 1.1em);
-}
-
-.divtest {
-  height: 100vh;
-  width: 100%;
-}
-
-.border {
-  border: 2px solid red; /* bordure de 2px, couleur rouge */
-}
-
-.bleu {
-  background-color: rgba(0, 0, 255, 0.5);
-}
-
-.rouge {
-  background-color: rgba(255, 0, 0, 0.5);
 }
 
 /*# sourceMappingURL=style.css.map */

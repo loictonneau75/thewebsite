@@ -40,17 +40,23 @@ export class Form{
         const inputWrapper = DH.createCustomElement("div", {
             classList: ["form-input-wrapper"]
         })
-        inputWrapper.appendChild(this.createSimpleInput(data))
+        if (data.otherId){}
+        else if(data.choiceId){}
+        else if(data.textarea){}
+        else inputWrapper.appendChild(this.createSimpleInput(data))
         parent.appendChild(inputWrapper)
-        if(data.nbColumn && data.nbColumn > 0){
-            const nbEmpty = data.nbColumn - 1
+
+        if(data.nbColumn && data.nbColumn > 0) this.addEmptyInputWrapper(data, parent)
+    }
+
+    addEmptyInputWrapper(data, parent){
+        const nbEmpty = data.nbColumn - 1
             for (let i = 0; i < nbEmpty; i++){
                 const emptyWrapper = DH.createCustomElement("div", {
                     classList: ["form-input-wrapper", "empty"]
                 })
                 parent.appendChild(emptyWrapper)
             }
-        }
     }
 
     createSimpleInput(data){

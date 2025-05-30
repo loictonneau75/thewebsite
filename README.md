@@ -22,7 +22,7 @@ The file consists of a **root** `object` with the following **required** keys:
     "siteName": str,
     "bgVideo": str,
     "collectables":{...},
-    "field":[...],
+    "fields":[...],
     "carousel":{...}
 }
 ```
@@ -140,7 +140,7 @@ Additional properties allow you to control input behavior and appearance:
 |otherId|str|Turns the input into a dropdown with a free text option|- **Mutually exclusive** with `choiceId` and `textarea`. <br>- Requires `storageKey`.|
 |choiceId|str|Enables autocomplete with multi-choice support|- **Mutually exclusive** with `otherId` and `textarea`.<br> - Requires `storageKey`.|
 |textarea|int|Converts the input into a multi-line textarea|**Mutually exclusive** with `choiceId` and `otherId`.|
-|nbColumn|int|Adjusts layout by simulating (nbColumn - 1) extra inputs|None|
+|nbColumn|int|Adjusts layout by simulating (nbColumn - 1) extra empty inputs|None|
 |cardRole|str|Defines appearance (title, subtitle)|Requires `cardPosition` set to `"header"`|
 > ⚠️ You must use only **one** of `choiceId`, `otherId`, or `textarea` per input. They are not compatible with each other.
 

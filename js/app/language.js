@@ -12,9 +12,4 @@ export class Language{
         return this.wrapper
     }
 
-    changeLang(component){
-        const old = document.querySelector(`.${component.section.classList[0]}`)
-        const _new = component.build()
-        old.replaceWith(_new)
-    }
 }

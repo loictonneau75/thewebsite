@@ -14,20 +14,20 @@ export function getlang(){
 }
 
 export function getColorAndOpacity(element, color){
-        const rgbaRegex = /rgba?\(([^)]+)\)/
-        const style = getComputedStyle(element)
-        const match = getComputedStyle(element)[color].match(rgbaRegex)
-        const parts = match[1].split(',').map(p => p.trim());
-        const r = parts[0];
-        const g = parts[1];
-        const b = parts[2];
-        const a = parts[3] !== undefined ? parseFloat(parts[3]) : 1;
+    const rgbaRegex = /rgba?\(([^)]+)\)/
+    const style = getComputedStyle(element)
+    const match = getComputedStyle(element)[color].match(rgbaRegex)
+    const parts = match[1].split(',').map(p => p.trim());
+    const r = parts[0];
+    const g = parts[1];
+    const b = parts[2];
+    const a = parts[3] !== undefined ? parseFloat(parts[3]) : 1;
 
-        return {
-            color: `${r}, ${g}, ${b}`,
-            opacity: a
-        };
-    }
+    return {
+        color: `${r}, ${g}, ${b}`,
+        opacity: a
+    };
+}
 
 export function calculateFadeRatio(referenceElement) {
     const distanceFromViewportTop = referenceElement.getBoundingClientRect().top
@@ -52,7 +52,11 @@ export function stickyWithTransform(targetElement, elementTriggerStart, elementT
     }
 }
 
-
+export function reloadComponent(component){
+    const old = document.querySelector(`.${component.section.classList[0]}`)
+    const _new = component.build()
+    old.replaceWith(_new)
+}
 
 
 

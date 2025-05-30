@@ -1,3 +1,6 @@
+@use "./debug.scss";
+
+
 @use "./custom.scss" as custom;
 @use "./app/backgroungManager.scss";
 @use "./app/topSection.scss";
@@ -9,21 +12,4 @@
     margin: 0;
     font-family: custom.$body-font;
     font-size: clamp(1em, 0.5em + 2.6vw, 1.1em);
-;
-}
-
-
-.divtest{
-    height: 100vh;
-    width: 100%;
-}
-.border {
-  border: 2px solid red; /* bordure de 2px, couleur rouge */
-}
-.bleu{
-    background-color: rgba($color: #00f, $alpha: 0.5);
-}
-
-.rouge{
-    background-color: rgba($color: #f00, $alpha: .5);
 }
