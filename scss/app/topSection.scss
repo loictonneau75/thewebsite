@@ -13,10 +13,10 @@
             font-family: custom.$title-font;
         }
         &-text{
-            font-size: clamp(1.5rem, 3vw + .5rem, 3rem);
+            font-size: clamp(1.2em, calc(4vw + 0.5em), 6em);
         }
         &-title{
-            font-size: clamp(3rem, 10vw + .5rem, 7rem);
+            font-size: clamp(2em, calc(8vw + 1em), 8em);
             text-align: center;
         }
     }

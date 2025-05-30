@@ -8,6 +8,8 @@
     box-sizing: border-box;
     margin: 0;
     font-family: custom.$body-font;
+    font-size: clamp(1em, 0.5em + 2.6vw, 1.1em);
+;
 }
 
 
