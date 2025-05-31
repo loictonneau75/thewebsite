@@ -1,5 +1,7 @@
 import * as DH from "../tools/domHelper.js"
 import * as utils from "../tools/utils.js"
+import * as storage from "../tools/storage.js"
+import * as event from "../tools/event.js"
 
 export class Form{
     constructor(config, label){
@@ -39,10 +41,10 @@ export class Form{
     buildInput(data, parent){
         const inputWrapper = DH.createCustomElement("div", {
             classList: ["form-input-wrapper"]
-        })
-        if (data.otherId){}
-        else if(data.choiceId){}
-        else if(data.textarea){}
+        }) 
+        if (data.otherId){inputWrapper.append(...this.otherChoice(data))}
+        //else if(data.choiceId){}
+        //else if(data.textarea){}
         else inputWrapper.appendChild(this.createSimpleInput(data))
         parent.appendChild(inputWrapper)
 
@@ -67,6 +69,38 @@ export class Form{
             classList: ["form-input"]
         })
         return input
+    }
+
+    otherChoice(data){
+        const options = storage.getDataFromLocalStorage(data.storageKey)
+        if (options.length > 0){
+            const innerwrapper = DH.createCustomElement("div",{
+                classList: ["form-input-wrapper-inner"]
+            })
+            const input = this.createSimpleInput(data)
+            input.readOnly = "readOnly"
+            const caret = DH.createCustomElement("div", {
+                classList: ["form-input-caret"]
+            })
+            innerwrapper.append(input, caret)
+
+            const suggestionWrapper = DH.createCustomElement("div",{
+                classList: ["form-input-choice-wrapper"]
+            });
+            [this.label.other, ...options].forEach(option => {
+                console.log(option)
+                const button = DH.createCustomElement("button",{
+                    type: "button",
+                    textContent:option
+                })
+                suggestionWrapper.appendChild(button)
+            })
+            event.showOnFocus(suggestionWrapper, input)
+            return [innerwrapper,suggestionWrapper]
+        }
+        else{
+            return [this.createSimpleInput(data)]
+        }
     }
 
     required(data){

@@ -1,4 +1,5 @@
 import * as utils from "./utils.js"
+import * as DH from "../tools/domHelper.js"
 
 export function setupscroll(){
     const overlay = document.querySelector(".bg-overlay")
@@ -21,10 +22,17 @@ export function flagclick(components = []) {
     flags.forEach(flag => {
         flag.addEventListener("click", () => {
             localStorage.setItem("lang", flag.title)
-            components.forEach(([Classe, args]) => {
-                utils.reloadComponent(new Classe(...args))
-            })
+            utils.reloadComponent(components)
             setupscroll()
         })
     })
 }
+
+export function showOnFocus(elementToShow, elementFocusable){
+    elementFocusable.addEventListener("focus", () => elementToShow.style.display = "block")
+    elementFocusable.addEventListener("blur", () => setTimeout(() => elementToShow.style.display = "none", 100))
+}
+
+
+
+

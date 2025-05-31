@@ -1,4 +1,5 @@
 import * as DH from "../tools/domHelper.js";
+import * as utils from "../tools/utils.js"
 
 export class Language{
     constructor(label){
@@ -8,8 +9,8 @@ export class Language{
             this.wrapper.appendChild(flag)
         }
     }
+
     build(){
         return this.wrapper
     }
-
 }

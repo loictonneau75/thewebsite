@@ -52,10 +52,14 @@ export function stickyWithTransform(targetElement, elementTriggerStart, elementT
     }
 }
 
-export function reloadComponent(component){
+
+export function reloadComponent(components = []){
+    components.forEach(([Classe, args]) => {
+    const component = new Classe(...args)
     const old = document.querySelector(`.${component.section.classList[0]}`)
     const _new = component.build()
     old.replaceWith(_new)
+    })
 }
 
 
